@@ -12,8 +12,13 @@ struct MovieManager {
     let baseURL = "https://www.omdbapi.com/"
     
     func fetchData(movie name:String){
-        let searchURL = "\(baseURL)?s=\(name)?apikey=\(apiKey)"
+        let temp = modifyString(name)
+        let searchURL = "\(baseURL)?s=\(temp)&apikey=\(apiKey)"
         print(searchURL)
+    }
+    
+    private func modifyString(_ string:String)->String{
+        return string.replacingOccurrences(of: " ", with: "+")
     }
     
     private func performFetchRequest(){
