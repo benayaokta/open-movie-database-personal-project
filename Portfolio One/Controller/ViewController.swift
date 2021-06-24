@@ -9,54 +9,72 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let movieManager = MovieManager()
-    let searchBar = UISearchController(searchResultsController: nil)
     
-    let label : UILabel = {
-        let tempLabel = UILabel()
-        tempLabel.text = "Find your favorite movies!"
-        tempLabel.translatesAutoresizingMaskIntoConstraints = false
-        tempLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
-        return tempLabel
-    }()
+    var movieManager = MovieManager()
+    let movieData : [MovieData] = []
+//    let movieModel: [MovieModel] = []
+    let searchBar = UISearchController()
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         initialSetup()
-        setupConstraint()
         searchBar.searchBar.delegate = self
-        
-        movieManager.fetchData(movie: "Kungfu")
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+            
     }
     
     private func initialSetup() {
         self.navigationItem.title = "Search Movies"
         self.navigationItem.searchController = searchBar
         
-        view.addSubview(label)
+        tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "movieCell")
+        
     }
+}
+
+extension ViewController: UISearchBarDelegate{
     
-    private func setupConstraint() {
-//        label.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-//        label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
-//        label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
-//        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 400).isActive = true
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        movieManager.fetchData(movie: searchText)
+        searchBar.endEditing(true)
+        searchBar.resignFirstResponder()
+
+//        searchBar.showsCancelButton = false
+//        searchBar.text = ""
         
-                label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-                label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        //        label.textAlignment = .center
     }
     
 }
 
-extension ViewController: UISearchBarDelegate{
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 144
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movieData.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieCell
+        cell.imageview.image = UIImage(named: "pencil")
+//        cell.label.text = movieData.Tit
+        
+//        cell.label.text = movieModel.tit
+        return cell
+    }
+    
+    
     
 }
 
