@@ -24,7 +24,7 @@ struct MovieManager {
     fileprivate func performFetchRequest(_ urlString: String){
         // create URL
         if let url = URL(string: urlString)  {
-
+            
             //create URLSession
             let urlSession = URLSession(configuration: .default)
             
@@ -32,10 +32,7 @@ struct MovieManager {
             let task = urlSession.dataTask(with: url) { data, response, err in
                 guard let data = data, let response = response as? HTTPURLResponse else {return}
                 
-                if err != nil{
-                    return
-                }
-                
+                if err != nil{ return }
                 if response.statusCode == 200{
                     parseJSON(data: data)
                 }
@@ -43,43 +40,32 @@ struct MovieManager {
             //start task
             task.resume()
         }
-
+        
     }
     
-    fileprivate func parseJSON(data: Data){
+    fileprivate func parseJSON(data: Data) {
         let decoder = JSONDecoder()
-
+        
         do {
-//            let decodedJSON = try decoder.decode(MovieData.self, from: data)
             let temp = try decoder.decode(Search.self, from: data)
-//            
-//            print(decodedJSON)
-//            
+            
             let search = temp.Search
-            let result = temp.totalResults
-            let response = temp.Response
             
-            print(search, result, response)
-//            
-//            print(search)
-//
-//            let title = decodedJSON.Title
-//            let year = decodedJSON.Year
-//            let id = decodedJSON.imdbID
-//            let poster = decodedJSON.Poster
-
-//            let data = MovieData(Title: title, Year: year, imdbID: id, Poster: poster)
-//            MovieModel(t: title, y: year, i: id, p: poster)
+            for i in 0...search.count-1 {
+                print("i \(i)", search[i].Title)
+//                let searchName = search[i].Title
+            MovieModel(title: search[i].Title, year: search[i].Year, id: search[i].imdbID, type: search[i].Type, poster: search[i].Poster)
+                
+            }
             
-//            return data
+            MovieModel(title: search[0].Title, year: search[0].Year, id: search[0].imdbID, type: search[0].Type, poster: search[0].Poster)
+//            return MovieModel(title: Strings, year: <#T##String#>, id: <#T##String#>, type: <#T##String#>, poster: <#T##String#>)
             
-
         } catch {
             print(error)
 //            return nil
-            
         }
-
+        
     }
-
+    
 }

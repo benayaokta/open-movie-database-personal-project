@@ -11,12 +11,6 @@ struct MovieModel {
     let title: String
     let year:String
     let id:String
+    let type:String
     let poster: String
-    
-    init(t:String, y:String,i:String,p:String) {
-        title = t
-        year = y
-        id = i
-        poster = p
-    }
 }

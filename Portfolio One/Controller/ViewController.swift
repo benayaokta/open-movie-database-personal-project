@@ -11,8 +11,8 @@ class ViewController: UIViewController {
     
     
     var movieManager = MovieManager()
-    let movieData : [MovieData] = []
-//    let movieModel: [MovieModel] = []
+//    let movieData = MovieData
+    let movieModel: [MovieModel] = []
     let searchBar = UISearchController()
     
     @IBOutlet weak var tableView: UITableView!
@@ -25,15 +25,12 @@ class ViewController: UIViewController {
         searchBar.searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-            
     }
     
     private func initialSetup() {
         self.navigationItem.title = "Search Movies"
         self.navigationItem.searchController = searchBar
-        
         tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "movieCell")
-        
     }
 }
 
@@ -42,13 +39,6 @@ extension ViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         movieManager.fetchData(movie: searchText)
-        searchBar.endEditing(true)
-        searchBar.resignFirstResponder()
-
-//        searchBar.showsCancelButton = false
-//        searchBar.text = ""
-        
-        
     }
     
 }
@@ -61,7 +51,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieData.count
+        return movieModel.count
     }
     
     
@@ -69,12 +59,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieCell
         cell.imageview.image = UIImage(named: "pencil")
 //        cell.label.text = movieData.Tit
-        
-//        cell.label.text = movieModel.tit
+//        cell.label.text = movieda
         return cell
     }
-    
-    
-    
-}
 
+}
