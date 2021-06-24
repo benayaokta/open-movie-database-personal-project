@@ -7,10 +7,16 @@
 
 import Foundation
 
-struct MovieData {
-    let title : String
-    let year : String
+struct Search: Decodable{
+    let Search: [MovieData]
+    let totalResults : String
+    let Response : String
+}
+
+struct MovieData: Decodable {
+    let Title : String
+    let Year : String
     let imdbID : String
-    let type : String
-    let poster : String
+//    let Type : String
+    let Poster : String
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F438E4DD268497F600F2BA23 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F438E4DC268497F600F2BA23 /* MovieModel.swift */; };
 		F4439CDF26810E1900D1F4A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4439CDE26810E1900D1F4A7 /* AppDelegate.swift */; };
 		F4439CE126810E1900D1F4A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4439CE026810E1900D1F4A7 /* SceneDelegate.swift */; };
 		F4439CE326810E1900D1F4A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4439CE226810E1900D1F4A7 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F438E4DC268497F600F2BA23 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		F4439CDB26810E1900D1F4A7 /* Portfolio One.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Portfolio One.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4439CDE26810E1900D1F4A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4439CE026810E1900D1F4A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				F4439CF72681185E00D1F4A7 /* MovieManager.swift */,
 				F4439CF926811BA400D1F4A7 /* MovieData.swift */,
+				F438E4DC268497F600F2BA23 /* MovieModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F438E4DD268497F600F2BA23 /* MovieModel.swift in Sources */,
 				F4439CF82681185E00D1F4A7 /* MovieManager.swift in Sources */,
 				F4439CE326810E1900D1F4A7 /* ViewController.swift in Sources */,
 				F4B70CC726837218005541B7 /* MovieCell.swift in Sources */,

@@ -9,23 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let movieManager = MovieManager()
+    
+    var movieManager = MovieManager()
     let movieData : [MovieData] = []
+//    let movieModel: [MovieModel] = []
     let searchBar = UISearchController()
     
-    @IBOutlet weak var tableView: UITableView!{
-        didSet{
-            
-            DispatchQueue.main.async { [self] in
-                if movieData.count > 0{
-                    tableView.isHidden = false
-                }else{
-                    tableView.isHidden = true
-                }
-            }
-            
-        }
-    }
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +25,7 @@ class ViewController: UIViewController {
         searchBar.searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-    
+            
     }
     
     private func initialSetup() {
@@ -52,6 +42,12 @@ extension ViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         movieManager.fetchData(movie: searchText)
+        searchBar.endEditing(true)
+        searchBar.resignFirstResponder()
+
+//        searchBar.showsCancelButton = false
+//        searchBar.text = ""
+        
         
     }
     
@@ -72,7 +68,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as! MovieCell
         cell.imageview.image = UIImage(named: "pencil")
-        cell.label.text = "test \(indexPath)"
+//        cell.label.text = movieData.Tit
+        
+//        cell.label.text = movieModel.tit
         return cell
     }
     
