@@ -23,14 +23,15 @@
                             <constraint firstAttribute="width" secondItem="rcy-YT-gFy" secondAttribute="height" multiplier="1:1" id="8hz-tv-Ed3"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKU-Jh-ZuL">
-                        <rect key="frame" x="154" y="31" width="42" height="82"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKU-Jh-ZuL">
+                        <rect key="frame" x="154" y="31" width="272" height="82"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="sKU-Jh-ZuL" secondAttribute="trailing" constant="20" id="MVj-eR-6UU"/>
                     <constraint firstItem="rcy-YT-gFy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="RpC-fn-MYS"/>
                     <constraint firstItem="rcy-YT-gFy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SdD-At-iSX"/>
                     <constraint firstAttribute="bottom" secondItem="rcy-YT-gFy" secondAttribute="bottom" constant="10" id="ZXl-V5-h5o"/>
@@ -41,7 +42,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imageview" destination="rcy-YT-gFy" id="zsp-fH-ku1"/>
+                <outlet property="imageViewTableCell" destination="rcy-YT-gFy" id="s6R-OR-wKc"/>
                 <outlet property="label" destination="sKU-Jh-ZuL" id="ONV-4l-VfJ"/>
             </connections>
             <point key="canvasLocation" x="228.98550724637684" y="137.94642857142856"/>

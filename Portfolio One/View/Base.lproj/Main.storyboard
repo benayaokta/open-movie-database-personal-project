@@ -17,19 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search movies or series" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGW-Dr-KdQ">
+                                <rect key="frame" x="20" y="160" width="374" height="682"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cs7-4W-RlQ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="movieCell" id="y6g-M0-oBl">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y6g-M0-oBl" id="0ac-MN-oJh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -37,12 +33,17 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cs7-4W-RlQ" secondAttribute="bottom" id="7an-YQ-JNl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cs7-4W-RlQ" secondAttribute="trailing" id="9a7-2T-nFz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZGW-Dr-KdQ" secondAttribute="bottom" constant="20" id="FUL-uj-9TY"/>
                             <constraint firstItem="cs7-4W-RlQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NS5-gj-nnj"/>
+                            <constraint firstItem="ZGW-Dr-KdQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="PHA-YZ-1Fj"/>
+                            <constraint firstItem="ZGW-Dr-KdQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="gux-ms-TD9"/>
                             <constraint firstItem="cs7-4W-RlQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="i81-FN-IQ8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZGW-Dr-KdQ" secondAttribute="trailing" constant="20" id="vg3-9E-3Kb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ovU-p2-auT"/>
                     <connections>
+                        <outlet property="initialLabel" destination="ZGW-Dr-KdQ" id="hC4-aC-olP"/>
                         <outlet property="tableView" destination="cs7-4W-RlQ" id="uNb-oO-KWt"/>
                     </connections>
                 </viewController>

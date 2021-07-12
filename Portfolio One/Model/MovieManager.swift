@@ -8,64 +8,66 @@
 import Foundation
 
 struct MovieManager {
-    let apiKey = "9c930033"
+    let apiKey = "?apikey=9c930033"
     let baseURL = "https://www.omdbapi.com/"
-    
-    func fetchData(movie name:String){
-        let temp = modifyString(name)
-        let searchURL = baseURL+"?s=\(temp)&apikey=\(apiKey)"
-        performFetchRequest(searchURL)
-    }
+    let searchParam = "&s="
+    let pages = "&page="
     
     private func modifyString(_ string:String)->String{
         return string.replacingOccurrences(of: " ", with: "+")
     }
     
-    fileprivate func performFetchRequest(_ urlString: String){
+    func performFetchRequest(moveiName name: String, page:Int ,completion: @escaping ([MovieModel]) -> Void){
+        var movieModel = [MovieModel]()
+        let temp = modifyString(name)
+        let searchURL = "\(baseURL)\(apiKey)\(searchParam)\(temp)\(pages)\(page)"
+        
         // create URL
-        if let url = URL(string: urlString)  {
-            
+        if let url = URL(string: searchURL)  {
+
             //create URLSession
             let urlSession = URLSession(configuration: .default)
             
             //give task
-            let task = urlSession.dataTask(with: url) { data, response, err in
-                guard let data = data, let response = response as? HTTPURLResponse else {return}
+            let task = urlSession.dataTask(with: url, completionHandler: {data, response, error in
+                guard let response = response as? HTTPURLResponse else {return}
                 
-                if err != nil{ return }
+                if error != nil{ return }
                 if response.statusCode == 200{
-                    parseJSON(data: data)
+                    if let data = data{
+                        
+                        let decoder = JSONDecoder()
+                        
+                        do {
+                            let temp = try decoder.decode(Search.self, from: data)
+                            let search = temp.Search
+                            
+                            for i in 0...search.count-1 {
+                                let title = search[i].Title
+                                let year = search[i].Year
+                                let id = search[i].imdbID
+                                let type = search[i].Type
+                                let poster = search[i].Poster
+                                
+                                movieModel.append(MovieModel(title: title, year: year, id: id, type: type, poster: poster))
+                            }
+                            
+                            completion(movieModel)
+                            
+                        } catch {
+                            print(error, error.localizedDescription)
+                        }
+                        
+                    }
+                        
+                    
                 }
-            }
+
+            })
+            
             //start task
             task.resume()
         }
         
     }
-    
-    fileprivate func parseJSON(data: Data) {
-        let decoder = JSONDecoder()
-        
-        do {
-            let temp = try decoder.decode(Search.self, from: data)
-            
-            let search = temp.Search
-            
-            for i in 0...search.count-1 {
-                print("i \(i)", search[i].Title)
-//                let searchName = search[i].Title
-            MovieModel(title: search[i].Title, year: search[i].Year, id: search[i].imdbID, type: search[i].Type, poster: search[i].Poster)
-                
-            }
-            
-            MovieModel(title: search[0].Title, year: search[0].Year, id: search[0].imdbID, type: search[0].Type, poster: search[0].Poster)
-//            return MovieModel(title: Strings, year: <#T##String#>, id: <#T##String#>, type: <#T##String#>, poster: <#T##String#>)
-            
-        } catch {
-            print(error)
-//            return nil
-        }
-        
-    }
-    
 }
