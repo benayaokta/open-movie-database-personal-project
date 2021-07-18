@@ -51,12 +51,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
-        
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
-        //            tableView.isHidden = false
-        //            emptyStateImage.isHidden = true
-        //            initialLabel.isHidden = true
-        //        }
+
     }
     
     deinit {
