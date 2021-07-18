@@ -10,6 +10,15 @@ import Kingfisher
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var emptyStateImage: UIImageView!{
+        didSet{
+            emptyStateImage.image = UIImage(systemName: "photo")
+            emptyStateImage.contentMode = .scaleAspectFit
+            emptyStateImage.clipsToBounds = true
+            emptyStateImage.isHidden = true
+        }
+    }
+    
     @IBOutlet weak var initialLabel: UILabel!{
         didSet{
             initialLabel.isHidden = false
@@ -42,6 +51,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
+        
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
+        //            tableView.isHidden = false
+        //            emptyStateImage.isHidden = true
+        //            initialLabel.isHidden = true
+        //        }
+    }
+    
+    deinit {
+        print(#function)
+        print(textFromSB, initialPage, fetchMore)
     }
     
     private func initialSetup() {
@@ -50,7 +70,7 @@ class ViewController: UIViewController {
         searchBar.searchBar.delegate = self
         
     }
-
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -70,7 +90,7 @@ class ViewController: UIViewController {
         initialPage += 1
         movieManager.performFetchRequest(moveiName: textFromSB, page: initialPage) { movieData in
             self.movieModel.append(contentsOf: movieData)
-        DispatchQueue.main.async{ [self] in
+            DispatchQueue.main.async{ [self] in
                 fetchMore = false
                 tableView.reloadData()
             }
@@ -79,7 +99,6 @@ class ViewController: UIViewController {
     
     @objc func refreshControlFunc()
     {
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
@@ -94,16 +113,15 @@ extension ViewController: UISearchBarDelegate{
         guard let searchText = searchBar.text else { return }
         self.movieModel.removeAll()
         textFromSB = searchText
-        movieManager.performFetchRequest(moveiName: textFromSB, page: initialPage) { movieData in
-
-            DispatchQueue.main.async { [self] in
-                initialLabel.text = "Empty"
-                
-                self.movieModel = movieData
-                
+        movieManager.performFetchRequest(moveiName: textFromSB, page: initialPage) { [self] movieData in
+            
+            movieModel = movieData
+            
+            DispatchQueue.main.async {
+                tableView.reloadData()
                 initialLabel.isHidden = true
                 tableView.isHidden = false
-                tableView.reloadData()
+                
                 tableView.refreshControl?.endRefreshing()
             }
         }
@@ -124,23 +142,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieCell {
-
+            
             UIImageView().kf.setImage(with: URL(string: movieModel[indexPath.row].poster), placeholder: nil, options: .none, progressBlock: .none) { [weak self] (result) in
-                        guard let strongSelf = self else { return }
-                        switch result {
-                        case .success(let value):
-                            cell.imageViewTableCell.image = value.image
-                            cell.imageViewTableCell.clipsToBounds = true
-                            cell.imageViewTableCell.contentMode = .scaleAspectFit
-                        case .failure(_):
-                            cell.imageViewTableCell.image = UIImage(systemName: "photo", withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .light, scale: .small))
-                            cell.imageViewTableCell.contentMode = .scaleAspectFit
-                            print("Fail to load image.")
-                        }
-                    }
+                guard let strongSelf = self else { return }
+                switch result {
+                case .success(let value):
+                    cell.imageViewTableCell.image = value.image
+                    cell.imageViewTableCell.clipsToBounds = true
+                    cell.imageViewTableCell.contentMode = .scaleAspectFit
+                case .failure(_):
+                    cell.imageViewTableCell.image = UIImage(systemName: "photo", withConfiguration: UIImage.SymbolConfiguration(pointSize: UIFont.systemFontSize, weight: .light, scale: .small))
+                    cell.imageViewTableCell.contentMode = .scaleAspectFit
+                    print("Fail to load image.")
+                }
+            }
             
             cell.label.text = movieModel[indexPath.row].title
-
+            
             return cell
         }
         return UITableViewCell()
@@ -148,6 +166,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
 }

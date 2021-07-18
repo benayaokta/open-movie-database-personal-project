@@ -25,6 +25,7 @@ struct MovieManager {
         // create URL
         if let url = URL(string: searchURL)  {
 
+//            print(url)
             //create URLSession
             let urlSession = URLSession(configuration: .default)
             

@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5h-L5-CwT">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search movies or series" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGW-Dr-KdQ">
                                 <rect key="frame" x="20" y="160" width="374" height="682"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -34,22 +37,46 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cs7-4W-RlQ" secondAttribute="bottom" id="7an-YQ-JNl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cs7-4W-RlQ" secondAttribute="trailing" id="9a7-2T-nFz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZGW-Dr-KdQ" secondAttribute="bottom" constant="20" id="FUL-uj-9TY"/>
+                            <constraint firstItem="u5h-L5-CwT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="J5n-NN-9Lb"/>
                             <constraint firstItem="cs7-4W-RlQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NS5-gj-nnj"/>
                             <constraint firstItem="ZGW-Dr-KdQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="PHA-YZ-1Fj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u5h-L5-CwT" secondAttribute="bottom" id="btb-jx-cj7"/>
                             <constraint firstItem="ZGW-Dr-KdQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="gux-ms-TD9"/>
                             <constraint firstItem="cs7-4W-RlQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="i81-FN-IQ8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u5h-L5-CwT" secondAttribute="trailing" id="itN-77-7gm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZGW-Dr-KdQ" secondAttribute="trailing" constant="20" id="vg3-9E-3Kb"/>
+                            <constraint firstItem="u5h-L5-CwT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wpq-4b-kJu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ovU-p2-auT"/>
+                    <navigationItem key="navigationItem" id="ovU-p2-auT">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="initialLabel" destination="ZGW-Dr-KdQ" id="hC4-aC-olP"/>
-                        <outlet property="tableView" destination="cs7-4W-RlQ" id="uNb-oO-KWt"/>
+                        <outlet property="emptyStateImage" destination="u5h-L5-CwT" id="8Iu-4e-gOn"/>
+                        <outlet property="initialLabel" destination="ZGW-Dr-KdQ" id="6p6-6a-swo"/>
+                        <outlet property="tableView" destination="cs7-4W-RlQ" id="egq-AK-KFk"/>
+                        <segue destination="O4q-Qu-ZJg" kind="show" identifier="toDetail" id="5NF-XV-1gG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="89.732142857142847"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="9is-ME-26N">
+            <objects>
+                <viewController storyboardIdentifier="toDetail" id="O4q-Qu-ZJg" customClass="DetailViewController" customModule="Portfolio_One" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KTx-Km-BBI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tW8-nc-TAL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="57F-2Z-LrE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6sH-Ix-Xv8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="794"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ifJ-A0-Ili">
