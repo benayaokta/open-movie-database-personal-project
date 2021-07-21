@@ -8,5 +8,5 @@
 import Foundation
 
 class DetailViewModel{
-    
+    //new development branch
 }
