@@ -74,6 +74,7 @@
 			children = (
 				F4439CDE26810E1900D1F4A7 /* AppDelegate.swift */,
 				F4439CE026810E1900D1F4A7 /* SceneDelegate.swift */,
+				F48432CD26A84D6700B331F8 /* Networking */,
 				F4439CF426810F1300D1F4A7 /* Model */,
 				F4439CF226810F0000D1F4A7 /* View */,
 				F4439CF326810F0700D1F4A7 /* Controller */,
@@ -107,11 +108,18 @@
 		F4439CF426810F1300D1F4A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F4439CF72681185E00D1F4A7 /* Apicall.swift */,
 				F4439CF926811BA400D1F4A7 /* MovieData.swift */,
 				F438E4DC268497F600F2BA23 /* MovieModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F48432CD26A84D6700B331F8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F4439CF72681185E00D1F4A7 /* Apicall.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
