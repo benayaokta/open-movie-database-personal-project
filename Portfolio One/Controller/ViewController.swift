@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         }
     }
     
-    var movieManager = MovieManager()
+    var movieManager = Apicall()
     
     var movieModel: [MovieModel] = []
     
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
     {
         fetchMore = true
         initialPage += 1
-        movieManager.performFetchRequest(moveiName: textFromSB, page: initialPage) { movieData in
+        movieManager.performFetchRequest(movieName: textFromSB, page: initialPage) { movieData in
             self.movieModel.append(contentsOf: movieData)
             DispatchQueue.main.async{ [self] in
                 fetchMore = false
@@ -110,7 +110,7 @@ extension ViewController: UISearchBarDelegate{
         guard let searchText = searchBar.text else { return }
         self.movieModel.removeAll()
         textFromSB = searchText
-        movieManager.performFetchRequest(moveiName: textFromSB, page: initialPage) { [self] movieData in
+        movieManager.performFetchRequest(movieName: textFromSB, page: initialPage) { [self] movieData in
             
             movieModel = movieData
             

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieManager {
+struct Apicall {
     let apiKey = "?apikey=9c930033"
     let baseURL = "https://www.omdbapi.com/"
     let searchParam = "&s="
@@ -17,7 +17,7 @@ struct MovieManager {
         return string.replacingOccurrences(of: " ", with: "+")
     }
     
-    func performFetchRequest(moveiName name: String, page:Int ,completion: @escaping ([MovieModel]) -> Void){
+    func performFetchRequest(movieName name: String, page:Int ,completion: @escaping ([MovieModel]) -> Void){
         var movieModel = [MovieModel]()
         let temp = modifyString(name)
         let searchURL = "\(baseURL)\(apiKey)\(searchParam)\(temp)\(pages)\(page)"
