@@ -19,6 +19,8 @@
 		F4439CFA26811BA400D1F4A7 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4439CF926811BA400D1F4A7 /* MovieData.swift */; };
 		F48432CA26A75DFB00B331F8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432C926A75DFB00B331F8 /* DetailViewController.swift */; };
 		F48432CC26A8141C00B331F8 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432CB26A8141C00B331F8 /* CustomUIView.swift */; };
+		F48432D026A8559F00B331F8 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432CF26A8559F00B331F8 /* RootViewModel.swift */; };
+		F48432D226A855A700B331F8 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432D126A855A700B331F8 /* DetailViewModel.swift */; };
 		F4B70CC726837218005541B7 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B70CC526837218005541B7 /* MovieCell.swift */; };
 		F4B70CC826837218005541B7 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B70CC626837218005541B7 /* MovieCell.xib */; };
 /* End PBXBuildFile section */
@@ -37,6 +39,8 @@
 		F4439CF926811BA400D1F4A7 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		F48432C926A75DFB00B331F8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F48432CB26A8141C00B331F8 /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
+		F48432CF26A8559F00B331F8 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		F48432D126A855A700B331F8 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F4B70CC526837218005541B7 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		F4B70CC626837218005541B7 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +78,7 @@
 			children = (
 				F4439CDE26810E1900D1F4A7 /* AppDelegate.swift */,
 				F4439CE026810E1900D1F4A7 /* SceneDelegate.swift */,
+				F48432CE26A8558F00B331F8 /* ViewModel */,
 				F48432CD26A84D6700B331F8 /* Networking */,
 				F4439CF426810F1300D1F4A7 /* Model */,
 				F4439CF226810F0000D1F4A7 /* View */,
@@ -120,6 +125,15 @@
 				F4439CF72681185E00D1F4A7 /* Apicall.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		F48432CE26A8558F00B331F8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F48432CF26A8559F00B331F8 /* RootViewModel.swift */,
+				F48432D126A855A700B331F8 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48432D026A8559F00B331F8 /* RootViewModel.swift in Sources */,
 				F438E4DD268497F600F2BA23 /* MovieModel.swift in Sources */,
 				F4439CF82681185E00D1F4A7 /* Apicall.swift in Sources */,
 				F4439CE326810E1900D1F4A7 /* ViewController.swift in Sources */,
@@ -207,6 +222,7 @@
 				F4439CFA26811BA400D1F4A7 /* MovieData.swift in Sources */,
 				F4439CE126810E1900D1F4A7 /* SceneDelegate.swift in Sources */,
 				F48432CC26A8141C00B331F8 /* CustomUIView.swift in Sources */,
+				F48432D226A855A700B331F8 /* DetailViewModel.swift in Sources */,
 				F48432CA26A75DFB00B331F8 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
