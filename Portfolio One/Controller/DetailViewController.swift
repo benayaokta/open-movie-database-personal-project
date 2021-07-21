@@ -40,6 +40,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Detail"
+        //tes
         setupData()
     }
     
