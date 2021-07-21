@@ -17,6 +17,7 @@
 		F4439CEB26810E1B00D1F4A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4439CE926810E1B00D1F4A7 /* LaunchScreen.storyboard */; };
 		F4439CF82681185E00D1F4A7 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4439CF72681185E00D1F4A7 /* MovieManager.swift */; };
 		F4439CFA26811BA400D1F4A7 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4439CF926811BA400D1F4A7 /* MovieData.swift */; };
+		F48432CA26A75DFB00B331F8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432C926A75DFB00B331F8 /* DetailViewController.swift */; };
 		F4B70CC726837218005541B7 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B70CC526837218005541B7 /* MovieCell.swift */; };
 		F4B70CC826837218005541B7 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B70CC626837218005541B7 /* MovieCell.xib */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		F4439CEC26810E1B00D1F4A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4439CF72681185E00D1F4A7 /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		F4439CF926811BA400D1F4A7 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
+		F48432C926A75DFB00B331F8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F4B70CC526837218005541B7 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		F4B70CC626837218005541B7 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				F4439CE226810E1900D1F4A7 /* ViewController.swift */,
+				F48432C926A75DFB00B331F8 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				F4439CDF26810E1900D1F4A7 /* AppDelegate.swift in Sources */,
 				F4439CFA26811BA400D1F4A7 /* MovieData.swift in Sources */,
 				F4439CE126810E1900D1F4A7 /* SceneDelegate.swift in Sources */,
+				F48432CA26A75DFB00B331F8 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,8 @@ class ViewController: UIViewController {
     
     var movieModel: [MovieModel] = []
     
+    var selectedRow: MovieModel?
+    
     var initialPage = 1
     
     var fetchMore = false
@@ -160,8 +162,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
+        selectedRow = movieModel[indexPath.row]
+        performSegue(withIdentifier: DetailViewController.segueIdentifier, sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == DetailViewController.segueIdentifier{
+            if let destinationVC = segue.destination as? DetailViewController{
+                destinationVC.movieDetail = selectedRow
+            }
+            
+        }
+    }
+    
+    
+
 }
