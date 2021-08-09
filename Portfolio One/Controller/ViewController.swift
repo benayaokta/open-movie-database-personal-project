@@ -81,11 +81,7 @@ class ViewController: UIViewController {
 extension ViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        print(#function)
         guard let searchText = searchBar.text else { return }
-        print(searchText)
-        
         rootVM.searchButtonClick(search: searchText)
     }
 }
