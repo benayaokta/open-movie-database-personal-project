@@ -24,13 +24,13 @@ struct Apicall {
         
         // create URL
         if let url = URL(string: searchURL)  {
-
-//            print(url)
+            
             //create URLSession
             let urlSession = URLSession(configuration: .default)
             
             //give task
             let task = urlSession.dataTask(with: url, completionHandler: {data, response, error in
+
                 guard let response = response as? HTTPURLResponse else {return}
                 
                 if error != nil{ return }
@@ -60,10 +60,10 @@ struct Apicall {
                         }
                         
                     }
-                        
+                    
                     
                 }
-
+                
             })
             
             //start task
