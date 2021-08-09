@@ -20,7 +20,6 @@
 		F48432CA26A75DFB00B331F8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432C926A75DFB00B331F8 /* DetailViewController.swift */; };
 		F48432CC26A8141C00B331F8 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432CB26A8141C00B331F8 /* CustomUIView.swift */; };
 		F48432D026A8559F00B331F8 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432CF26A8559F00B331F8 /* RootViewModel.swift */; };
-		F48432D226A855A700B331F8 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48432D126A855A700B331F8 /* DetailViewModel.swift */; };
 		F4B70CC726837218005541B7 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B70CC526837218005541B7 /* MovieCell.swift */; };
 		F4B70CC826837218005541B7 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4B70CC626837218005541B7 /* MovieCell.xib */; };
 /* End PBXBuildFile section */
@@ -40,7 +39,6 @@
 		F48432C926A75DFB00B331F8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F48432CB26A8141C00B331F8 /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		F48432CF26A8559F00B331F8 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
-		F48432D126A855A700B331F8 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		F4B70CC526837218005541B7 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		F4B70CC626837218005541B7 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				F48432CF26A8559F00B331F8 /* RootViewModel.swift */,
-				F48432D126A855A700B331F8 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,7 +219,6 @@
 				F4439CFA26811BA400D1F4A7 /* MovieData.swift in Sources */,
 				F4439CE126810E1900D1F4A7 /* SceneDelegate.swift in Sources */,
 				F48432CC26A8141C00B331F8 /* CustomUIView.swift in Sources */,
-				F48432D226A855A700B331F8 /* DetailViewModel.swift in Sources */,
 				F48432CA26A75DFB00B331F8 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

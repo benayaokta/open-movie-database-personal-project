@@ -10,6 +10,9 @@ import Kingfisher
 
 class ViewController: UIViewController {
     
+    let rootVM = RootViewModel()
+    var items = [MovieModel]()
+    
     @IBOutlet weak var emptyStateImage: UIImageView!{
         didSet{
             emptyStateImage.image = UIImage(systemName: "photo")
@@ -24,18 +27,6 @@ class ViewController: UIViewController {
             initialLabel.isHidden = false
         }
     }
-    
-    var apiCall = Apicall()
-    
-    var movieModel: [MovieModel] = []
-    
-    var selectedRow: MovieModel?
-    
-    var initialPage = 1
-    
-    var fetchMore = false
-    
-    var textFromSB = ""
     
     let searchBar = UISearchController()
     
@@ -56,49 +47,32 @@ class ViewController: UIViewController {
 
     }
     
-    deinit {
-        print(#function)
-        print(textFromSB, initialPage, fetchMore)
-    }
-    
     private func initialSetup() {
         self.navigationItem.title = "Search Movies"
         self.navigationItem.searchController = searchBar
         searchBar.searchBar.delegate = self
         
+        rootVM.delegate = self
+        
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-        
+
         if offsetY > (contentHeight - scrollView.frame.height)
         {
-            if !fetchMore
-            {
-                fetchMoreDataForInfiniteScroll()
-            }
+            rootVM.checkConditionInfiniteScroll()
+
         }
     }
-    
-    fileprivate func fetchMoreDataForInfiniteScroll()
-    {
-        fetchMore = true
-        initialPage += 1
-        apiCall.performFetchRequest(movieName: textFromSB, page: initialPage) { movieData in
-            self.movieModel.append(contentsOf: movieData)
-            DispatchQueue.main.async{ [self] in
-                fetchMore = false
-                tableView.reloadData()
-            }
-        }
-    }
+
     
     @objc func refreshControlFunc()
     {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.tableView.refreshControl?.endRefreshing()
+        DispatchQueue.main.async { [self] in
+            tableView.reloadData()
+            tableView.refreshControl?.endRefreshing()
         }
         
     }
@@ -108,40 +82,33 @@ extension ViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        self.movieModel.removeAll()
-        textFromSB = searchText
-        apiCall.performFetchRequest(movieName: textFromSB, page: initialPage) { [self] movieData in
-            
-            movieModel = movieData
-            
-            DispatchQueue.main.async {
-                tableView.reloadData()
-                initialLabel.isHidden = true
-                tableView.isHidden = false
-                
-                tableView.refreshControl?.endRefreshing()
-            }
-        }
+        rootVM.searchButtonClick(search: searchText)
     }
 }
 
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 144
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieModel.count
+        return items.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieCell {
+            let posterPath = items[indexPath.row].poster
+            let posterTitle = items[indexPath.row].title
             
-            UIImageView().kf.setImage(with: URL(string: movieModel[indexPath.row].poster), placeholder: nil, options: .none, progressBlock: .none) { [weak self] (result) in
-                guard let strongSelf = self else { return }
+            UIImageView().kf.setImage(with: URL(string: posterPath), placeholder: nil, options: .none, progressBlock: .none) { [weak self] (result) in
+                guard let self = self else { return }
                 switch result {
                 case .success(let value):
                     cell.imageViewTableCell.image = value.image
@@ -154,7 +121,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                 }
             }
             
-            cell.label.text = movieModel[indexPath.row].title
+            cell.label.text = posterTitle
             
             return cell
         }
@@ -162,14 +129,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = movieModel[indexPath.row]
+        rootVM.selectedRow = rootVM.movieItems[indexPath.row]
         performSegue(withIdentifier: DetailViewController.segueIdentifier, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == DetailViewController.segueIdentifier{
             if let destinationVC = segue.destination as? DetailViewController{
-                destinationVC.movieDetail = selectedRow
+                destinationVC.movieDetail = rootVM.selectedRow
             }
             
         }
@@ -177,4 +144,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     
 
+}
+
+extension ViewController: RootViewModelDelegate{
+    func updateSearch(_ data: [MovieModel]) {
+        self.items = data
+        
+        DispatchQueue.main.async { [self] in
+            tableView.reloadData()
+            tableView.isHidden = false
+            tableView.refreshControl?.endRefreshing()
+        }
+    }
 }
